@@ -1,6 +1,8 @@
 #include "controller.h"
+#include <chrono>
 #include "aStar.h"
 #include <iostream>
+#include <sys/time.h>
 
 void controller::start() {
     //initialize variables. Also needs to empty masterNodeList on
@@ -41,7 +43,8 @@ void controller::start() {
 void controller::work() {
     int current; // holds the index value of the node with lowest f value
     std::vector<node> children;
-
+    timeval start, end;
+    gettimeofday(&start, NULL);
     while (sorted != true) {
 
         children.clear();
@@ -70,25 +73,18 @@ void controller::work() {
                 final = i;
                 std::cout<<"congratulations\n";
                 ui.printNode(children[i]);
+                gettimeofday(&end, NULL);
+                    addData(start, end, children[i]);
                 }
             }
        // std::cout<<"hello3\n";
            for(int i = 0; i < children.size(); i++){
                a.addNode(children[i]);
            }
-       // std::cout<<"hello4\n";
 
-       //creat F values
-
-
-    if (a.masterNodeList.size() == 20){
-        ui.printNode(a.masterNodeList[20]);
-        exit(1);
     }
 
-    //ui.printAll(a.masterNodeList);
-    //sorted = true; //This forces the loop to exit after one run for debugging reasons
-    }
+ui.printData(arr);
 
 }
 
@@ -110,8 +106,30 @@ return index;
 }
 
 
-void controller::addData() {
+void controller::addData(timeval start, timeval end, node n) {
+    //get time:
+    arr[runs][6] = 1;
+    const double runtime = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec) / 1000000.0;
+    arr[runs][0] = runtime;
+    std::cout<<arr[runs][0]<<"\n";
 
+    //get total nodes:
+    arr[runs][1]= a.masterNodeList.size();
 
+    //Get Nodes that were expanded:
+    for (int i = 0; i < a.masterNodeList.size(); i++){
+        if(a.masterNodeList[i].hasChildren == true)
+            arr[runs][2] += 1;
+    }
+     std::cout<<"nodes Expanded: "<< arr[runs][2]<<" ";
+
+    //deepest branch
+    arr[runs][3] = n.gValue;
+
+    //Branching Factor
+    arr[runs][4] = (arr[runs][1]/arr[runs][3]);
+
+    //Memory Used
+    arr[runs][5] = a.masterNodeList.size()*sizeof(node);
 
 }

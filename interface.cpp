@@ -36,3 +36,18 @@ void interface::printAll(std::vector<node> m){
         std::cout <<"\n";
     }
 }
+
+void interface::printData(double arr[][7]) {
+    std::cout<<"\n    ET     NG      NE     d      b*     MO\n";
+
+
+    for (int i = 0; i < 4; i++){
+        if (arr[i][6]==1){
+    std::cout<< std::fixed << std::setprecision(1) <<"\n    "<<arr[i][0];
+    std::cout<<"    "<<arr[i][1]<<"    "<<arr[i][2];
+    std::cout<<"    "<<arr[i][3]<<"    "<<arr[i][4]<<"    "<<arr[i][5]<<"\n";
+        }
+
+    }
+
+}

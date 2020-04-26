@@ -130,5 +130,4 @@ void controller::addData(timeval start, timeval end, node n) {
 
     //Memory Used
     arr[runs][5] = a.masterNodeList.size()*sizeof(node);
-
 }

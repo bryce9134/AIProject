@@ -1,0 +1,3 @@
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/cmake-build-debug/CMakeFiles/Project_2_stuff.dir

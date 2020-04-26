@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/aStar.cpp
+aStar.h
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/aStar.h
+interface.h
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/interface.h
+utility
+-
+iostream
+-
+
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/aStar.h
+vector
+-
+utility
+-
+set
+-
+queue
+-
+stack
+-
+map
+-
+algorithm
+-
+node.h
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/node.h
+
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/interface.h
+iostream
+-
+node.h
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/node.h
+
+/Users/holliewilson/GitHub/AlClassProjects/Project 2 stuff/node.h
+utility
+-
+vector
+-
+

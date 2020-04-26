@@ -84,7 +84,7 @@ void controller::work() {
     }
 
 ui.printData(arr);
-
+a.masterNodeList.clear();
 }
 
 //returns the index of node with lowest f value

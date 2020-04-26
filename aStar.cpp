@@ -111,34 +111,39 @@ int aStar::h4(node node){
             s_index = 3;
         else if(i==3)
             s_index = 0;
-        else if(i==4 && value != '*')
+        else if(i==4 && value != '*') {
             sValue++;
+            s_index = 10;
+        }
         else
             s_index = i+1;
-
-        successor = node.eightState[s_index];
-        if(value == '1' && successor != '2')
-            sValue+=2;
-        if(value == '2' && successor != '3')
-            sValue+=2;
-        if(value == '3' && successor != '4')
-            sValue+=2;
-        if(value == '4' && successor != '5')
-            sValue+=2;
-        if(value == '5' && successor != '6')
-            sValue+=2;
-        if(value == '6' && successor != '7')
-            sValue+=2;
-        if(value == '7' && successor != '8')
-            sValue+=2;
-        if(value == '8' && successor != '0')
-            sValue+=2;
+        if (s_index != 10) {
+            successor = node.eightState[s_index];
+            if (value == '1' && successor != '2')
+                sValue += 2;
+            if (value == '2' && successor != '3')
+                sValue += 2;
+            if (value == '3' && successor != '4')
+                sValue += 2;
+            if (value == '4' && successor != '5')
+                sValue += 2;
+            if (value == '5' && successor != '6')
+                sValue += 2;
+            if (value == '6' && successor != '7')
+                sValue += 2;
+            if (value == '7' && successor != '8')
+                sValue += 2;
+            if (value == '8' && successor != '0')
+                sValue += 2;
+        }
     }
 
     std::cout << "S Value: " << sValue;
     //calculate Nillson's Sequence Score h2(n)+3S(n)
     int temp = h2(node);
-    return (temp + 3*sValue;
+    int temp2 = (3*sValue);
+    int temp3 = (temp + temp2);
+    return temp3;
 }
 
 //generates all the possible nodes that can be created from initial (children)

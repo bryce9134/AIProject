@@ -108,3 +108,10 @@ int controller::compareF(std::vector<node> m){
     }
 return index;
 }
+
+
+void controller::addData() {
+
+
+
+}

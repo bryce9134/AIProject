@@ -20,7 +20,7 @@ private:
     bool sorted;
     int choice;
     int final;
-    int [5][7];
+    int arr[5][7];
 
     const std::vector<char> init1 = {'2', '8', '3',
                                      '1', '6', '4',
@@ -33,6 +33,7 @@ public:
     controller(){
        runs = 0;
     };
+    void addData();
     void start();
     void work();
     int compareF(std::vector<node> m);

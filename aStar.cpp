@@ -137,9 +137,9 @@ int aStar::h4(node node){
 
     std::cout << "S Value: " << sValue;
     //calculate Nillson's Sequence Score h2(n)+3S(n)
-    return h2(node) + 3*sValue;
+    int temp = h2(node);
+    return (temp + 3*sValue;
 }
-
 
 //generates all the possible nodes that can be created from initial (children)
 void aStar::generateSuccessors(node parent, std::vector<node> &children, int index){

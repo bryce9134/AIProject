@@ -8,7 +8,7 @@ void controller::start() {
     //initialize variables. Also needs to empty masterNodeList on
     //every run after the first.
     a.createNeighborPairs();
-    runs++;
+    runs = 4;
     sorted = false;
     node init;
     init.gValue = 0;

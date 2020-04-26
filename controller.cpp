@@ -48,22 +48,21 @@ void controller::work() {
     while (sorted != true) {
 
         children.clear();
-        //Compare all F values
-       // ui.printAll(a.masterNodeList);
+        //Compare all F values;
        current = compareF( a.masterNodeList );
-       //std::cout<<"current: " << current;//debugging
+
 
  //Generate Successors--------------------------------------------
 
         a.generateSuccessors(a.masterNodeList[current], children, current);
         a.masterNodeList[current].hasChildren = true;
-       // std::cout<<"hello1\n";
+
  //Get H values of children---------------------------------------
 
         for (int i = 0; i < children.size(); i++){
            children[i].hValue = a.runAlg(children[i], runs);
         }
-       // std::cout<<"hello2\n";
+
  //if h value of a child is 0 then set sorted=true-----------------
 
            for(int i = 0; i < children.size(); i++)
@@ -98,7 +97,7 @@ int controller::compareF(std::vector<node> m){
             if (m[i].fValue < bestF) {
                 bestF = m[i].fValue;
                 index = i;
-                std::cout<<"fvalue:"<<m[i].fValue<<"\n"; //debugging
+
             }
         }
     }

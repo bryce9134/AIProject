@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "node.h"
+#include <iomanip>
 
 class interface{
     //Command line interface only
@@ -18,7 +19,7 @@ public:
     void printNode(node n);
     int chooseInitialState();
     int shouldWeCreateGraphs();
-
+    void printData(double[][7]);
 
     //Should create the tables and output them to the command line
     void printAll(std::vector<node>);

@@ -9,6 +9,7 @@
 #include "aStar.h"
 #include "grapher.h"
 #include "node.h"
+#include <sys/time.h>
 
 class controller {
 private:
@@ -20,7 +21,8 @@ private:
     bool sorted;
     int choice;
     int final;
-    int arr[5][7];
+    double arr[4][7];
+
 
     const std::vector<char> init1 = {'2', '8', '3',
                                      '1', '6', '4',
@@ -33,7 +35,7 @@ public:
     controller(){
        runs = 0;
     };
-    void addData();
+    void addData(timeval start, timeval end, node node);
     void start();
     void work();
     int compareF(std::vector<node> m);

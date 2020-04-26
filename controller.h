@@ -20,6 +20,7 @@ private:
     bool sorted;
     int choice;
     int final;
+    int [5][7];
 
     const std::vector<char> init1 = {'2', '8', '3',
                                      '1', '6', '4',

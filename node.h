@@ -12,6 +12,7 @@ struct node{
                fValue;
         int parent;
         bool hasChildren = false;
+        int parentSpace;
 };
 
 enum positions{

@@ -154,15 +154,18 @@ void aStar::generateSuccessors(node parent, std::vector<node> &children, int ind
     std::vector<int> currentNeighbors = neighbors.at(emptySpace);
 
     for(int i = 0; i < currentNeighbors.size(); i++){
-        temp.eightState = parent.eightState;
-        temp.gValue = parent.gValue +1;
-        temp.parent = index;
-       // std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
-        std::swap(temp.eightState[emptySpace], temp.eightState[currentNeighbors[i]]);
+        if(currentNeighbors[i] != parent.parentSpace) {
+            temp.eightState = parent.eightState;
+            temp.gValue = parent.gValue + 1;
+            temp.parent = index;
+            temp.parentSpace = emptySpace;
+            // std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
+            std::swap(temp.eightState[emptySpace], temp.eightState[currentNeighbors[i]]);
 
-        children.push_back(temp);
+            children.push_back(temp);
 
-        child++;
+            child++;
+        }
     }
 }
 

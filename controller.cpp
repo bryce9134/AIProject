@@ -25,6 +25,7 @@ void controller::start() {
     init.fValue = init.hValue + init.gValue;
     init.parent = -1;
 
+
     //add first node to master list
     a.addNode(init);
 
@@ -42,6 +43,7 @@ void controller::work() {
     std::vector<node> children;
 
     while (sorted != true) {
+
         children.clear();
         //Compare all F values
        // ui.printAll(a.masterNodeList);
@@ -79,17 +81,22 @@ void controller::work() {
        //creat F values
 
 
-
+    if (a.masterNodeList.size() == 20){
+        ui.printNode(a.masterNodeList[20]);
+        exit(1);
+    }
 
     //ui.printAll(a.masterNodeList);
     //sorted = true; //This forces the loop to exit after one run for debugging reasons
     }
+
 }
 
 //returns the index of node with lowest f value
 int controller::compareF(std::vector<node> m){
     int bestF = 1000;
     int index;
+
     for (int i = 0; i < m.size();i++) {
         if (m[i].hasChildren == false) {
             if (m[i].fValue < bestF) {

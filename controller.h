@@ -19,6 +19,7 @@ private:
                  // aStar.runAlg() to tell it which hueristic to run.
     bool sorted;
     int choice;
+    int final;
 
     const std::vector<char> init1 = {'2', '8', '3',
                                      '1', '6', '4',

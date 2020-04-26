@@ -21,52 +21,68 @@ void controller::start() {
     }
 
     //set values for initial node
-    //init.hValue = a.runAlg(init, runs);
+    init.hValue = a.runAlg(init, runs);
     init.fValue = init.hValue + init.gValue;
     init.parent = -1;
 
     //add first node to master list
     a.addNode(init);
 
-    std::vector<node> children;
 
-    ui.printNode(init);
-    a.runAlg(init, 4);
-    a.generateSuccessors(init, children, 0);
-    ui.printAll(children);
+
+
 
     //send to work
-    //work();
+    work();
 
 }
 
 void controller::work() {
     int current; // holds the index value of the node with lowest f value
-
+    std::vector<node> children;
 
     while (sorted != true) {
+        children.clear();
         //Compare all F values
+       // ui.printAll(a.masterNodeList);
        current = compareF( a.masterNodeList );
-       std::cout<<"current: " << current;//debugging
+       //std::cout<<"current: " << current;//debugging
 
  //Generate Successors--------------------------------------------
 
-        //a.generateSuccessors(a.mast);
-
+        a.generateSuccessors(a.masterNodeList[current], children, current);
+        a.masterNodeList[current].hasChildren = true;
+       // std::cout<<"hello1\n";
  //Get H values of children---------------------------------------
 
-        /*for (int i = 0; i < children.size(); i++){
-            a.runAlg(children, runs);
-        }*/
+        for (int i = 0; i < children.size(); i++){
+           children[i].hValue = a.runAlg(children[i], runs);
+        }
+       // std::cout<<"hello2\n";
  //if h value of a child is 0 then set sorted=true-----------------
 
-           /* for(int i = 0; i < children.size(); i++)
-            {
-                if (children(i).hvalue = 0){
-                sorted = true}
-            }*/
+           for(int i = 0; i < children.size(); i++)
+            {   children[i].fValue = children[i].hValue + children[i].gValue;
+                if (children[i].hValue == 0){
+                sorted = true;
+                final = i;
+                std::cout<<"congratulations\n";
+                ui.printNode(children[i]);
+                }
+            }
+       // std::cout<<"hello3\n";
+           for(int i = 0; i < children.size(); i++){
+               a.addNode(children[i]);
+           }
+       // std::cout<<"hello4\n";
 
-    sorted = true; //This forces the loop to exit after one run for debugging reasons
+       //creat F values
+
+
+
+
+    //ui.printAll(a.masterNodeList);
+    //sorted = true; //This forces the loop to exit after one run for debugging reasons
     }
 }
 

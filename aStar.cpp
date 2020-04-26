@@ -157,7 +157,7 @@ void aStar::generateSuccessors(node parent, std::vector<node> &children, int ind
         temp.eightState = parent.eightState;
         temp.gValue = parent.gValue +1;
         temp.parent = index;
-        std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
+       // std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
         std::swap(temp.eightState[emptySpace], temp.eightState[currentNeighbors[i]]);
 
         children.push_back(temp);
@@ -182,8 +182,7 @@ int aStar::runAlg(node n, int r){
             break;
         case 4: hvalue=h4(n);
             break;
-        case 5: hvalue=h5(n);
-            break;
+
     }
     return hvalue;
 }

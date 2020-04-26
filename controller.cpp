@@ -8,7 +8,7 @@ void controller::start() {
     //initialize variables. Also needs to empty masterNodeList on
     //every run after the first.
     a.createNeighborPairs();
-    runs = 4;
+    runs = 1;
     sorted = false;
     node init;
     init.gValue = 0;
@@ -32,15 +32,13 @@ void controller::start() {
     a.addNode(init);
 
 
-
-
-
     //send to work
     work();
 
 }
 
 void controller::work() {
+    //std::cout<<"Called Work";
     int current; // holds the index value of the node with lowest f value
     std::vector<node> children;
     timeval start, end;
@@ -50,7 +48,6 @@ void controller::work() {
         children.clear();
         //Compare all F values;
        current = compareF( a.masterNodeList );
-
 
  //Generate Successors--------------------------------------------
 
@@ -82,9 +79,8 @@ void controller::work() {
            }
 
     }
-
-ui.printData(arr);
-a.masterNodeList.clear();
+//ui.printData(arr);
+runAgain();
 }
 
 //returns the index of node with lowest f value
@@ -110,7 +106,7 @@ void controller::addData(timeval start, timeval end, node n) {
     arr[runs][6] = 1;
     const double runtime = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec) / 1000000.0;
     arr[runs][0] = runtime;
-    std::cout<<arr[runs][0]<<"\n";
+    //std::cout<<arr[runs][0]<<"\n";
 
     //get total nodes:
     arr[runs][1]= a.masterNodeList.size();
@@ -120,7 +116,7 @@ void controller::addData(timeval start, timeval end, node n) {
         if(a.masterNodeList[i].hasChildren == true)
             arr[runs][2] += 1;
     }
-     std::cout<<"nodes Expanded: "<< arr[runs][2]<<" ";
+    // std::cout<<"nodes Expanded: "<< arr[runs][2]<<" ";
 
     //deepest branch
     arr[runs][3] = n.gValue;
@@ -130,4 +126,30 @@ void controller::addData(timeval start, timeval end, node n) {
 
     //Memory Used
     arr[runs][5] = a.masterNodeList.size()*sizeof(node);
+}
+void controller::runAgain() {
+    std::cout<<"runAgain\n";
+    a.masterNodeList.clear();
+    runs++;
+    if(runs < 5){
+        std::cout<<"once\n";
+        node init;
+        if (choice == 1){
+            init.eightState.assign(init1.begin(), init1.end());
+        }
+        else{
+            init.eightState.assign(init2.begin(), init2.end());
+        }
+
+        init.hValue = a.runAlg(init, runs);
+        init.fValue = init.hValue + init.gValue;
+        init.parent = -1;
+        a.addNode(init);
+        ui.printAll(a.masterNodeList);
+        work();
+    }
+    if (runs = 5){
+        ui.printData(arr);
+    }
+
 }

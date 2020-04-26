@@ -35,6 +35,7 @@ public:
     controller(){
        runs = 0;
     };
+    void runAgain();
     void addData(timeval start, timeval end, node node);
     void start();
     void work();

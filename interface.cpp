@@ -49,5 +49,7 @@ void interface::printData(double arr[][7]) {
         }
 
     }
+    std::cout<<"Please note that if the time is less than one tenth of a second, it will not be displayed.\n";
+    std::cout<<"This should only be the case when initial choice 1 is taken\n";
 
 }

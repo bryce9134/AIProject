@@ -103,7 +103,6 @@ int aStar::h4(node node) {
 
 }
 
-
 //generates all the possible nodes that can be created from initial (children)
 void aStar::generateSuccessors(node parent, std::vector<node> &children, int index){
 
@@ -126,9 +125,7 @@ void aStar::generateSuccessors(node parent, std::vector<node> &children, int ind
             temp.parentSpace = emptySpace;
             // std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
             std::swap(temp.eightState[emptySpace], temp.eightState[currentNeighbors[i]]);
-
             children.push_back(temp);
-
             child++;
         }
     }

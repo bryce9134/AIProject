@@ -1,8 +1,6 @@
 #include "aStar.h"
-#include "interface.h"
 #include <utility>
 #include <iostream>
-
 
 //Number of misplaced tiles from the goal
 int aStar::h1(node node){
@@ -27,13 +25,10 @@ int aStar::h2(node node) {
 
         if(node.eightState[i] != GOAL_STATE[i]) {
             position = i;
-            std::cout << "Position: " << position << "\n";
 
             for(int j = 0; j < MAX_CELLS; j++) {
-                if (node.eightState[position] == GOAL_STATE[j]) {
+                if (node.eightState[position] == GOAL_STATE[j])
                     goal_index = j;
-                    std::cout << "Goal Index: " << goal_index << "\n";
-                }
             }
 
             currentNeighbors = neighbors.at(position);
@@ -63,10 +58,8 @@ int aStar::h2(node node) {
             } else
                 h2++;
         }
-        std::cout << "current h2: " << h2 << "\n\n";
     }
 
-    std::cout << "h2 Value is: " << h2 << "\n";
     return h2;
 }
 
@@ -80,7 +73,6 @@ int aStar::h3(node node) {
                aStar::rowsCols(node, 1, 8, 3) +
                aStar::rowsCols(node, 2, 9, 3);
 
-    std::cout << "h4 value: " << rows + cols << "\n";
     return rows + cols;
 }
 
@@ -102,40 +94,50 @@ int aStar::rowsCols(node n, int beg, int end, int inc) {
     return out;
 }
 
-
+//Nillson's Sequence Score
 int aStar::h4(node node){
     char value, successor;
-    int sValue = 0;
+    int sValue = 0, s_index;
 
-    for(int i = 0; i <= MAX_CELLS; i++){
+    for(int i = 0; i < MAX_CELLS; i++){
         value = node.eightState[i];
-        successor = node.eightState[i+1];
+        if(i==2)
+            s_index = 5;
+        else if(i==5)
+            s_index = 8;
+        else if(i==8 || i==7)
+            s_index = i-1;
+        else if(i==6)
+            s_index = 3;
+        else if(i==3)
+            s_index = 0;
+        else if(i==4 && value != '*')
+            sValue++;
+        else
+            s_index = i+1;
+
+        successor = node.eightState[s_index];
         if(value == '1' && successor != '2')
-            sValue++;
+            sValue+=2;
         if(value == '2' && successor != '3')
-            sValue++;
-        if(value == '3' && successor != '8')
-            sValue++;
-        if(value == '4' && successor != '7')
-            sValue++;
-        if(value == '6' && successor != '5')
-            sValue++;
-        if(value == '7' && successor != '6')
-            sValue++;
-        if(value == '8' && successor != '*')
-            sValue++;
+            sValue+=2;
+        if(value == '3' && successor != '4')
+            sValue+=2;
+        if(value == '4' && successor != '5')
+            sValue+=2;
+        if(value == '5' && successor != '6')
+            sValue+=2;
+        if(value == '6' && successor != '7')
+            sValue+=2;
+        if(value == '7' && successor != '8')
+            sValue+=2;
+        if(value == '8' && successor != '0')
+            sValue+=2;
     }
 
-    std::cout<< "S value is: " << sValue << "\n";
-    return sValue;
-
-//    int firstTwo,
-//        lastTwo;
-//
-//    firstTwo = std::max(h1(node), h2(node));
-//    lastTwo = std::max(h3(node), h4(node));
-//
-//    return std::max(firstTwo, lastTwo);
+    std::cout << "S Value: " << sValue;
+    //calculate Nillson's Sequence Score h2(n)+3S(n)
+    return h2(node) + 3*sValue;
 }
 
 
@@ -185,7 +187,6 @@ int aStar::runAlg(node n, int r){
             break;
         case 4: hvalue=h4(n);
             break;
-
     }
     return hvalue;
 }

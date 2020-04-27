@@ -8,7 +8,7 @@ void controller::start() {
     //initialize variables. Also needs to empty masterNodeList on
     //every run after the first.
     a.createNeighborPairs();
-    runs = 1;
+
     sorted = false;
     node init;
     init.gValue = 0;
@@ -22,6 +22,7 @@ void controller::start() {
         init.eightState.assign(init2.begin(), init2.end());
     }
 
+    runs = ui.chooseH();
     //set values for initial node
     init.hValue = a.runAlg(init, runs);
     init.fValue = init.hValue + init.gValue;
@@ -79,8 +80,8 @@ void controller::work() {
            }
 
     }
-//ui.printData(arr);
-runAgain();
+ui.printData(arr);
+//runAgain();
 }
 
 //returns the index of node with lowest f value
@@ -103,29 +104,29 @@ return index;
 
 void controller::addData(timeval start, timeval end, node n) {
     //get time:
-    arr[runs][6] = 1;
+    arr[1][6] = 1;
     const double runtime = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec) / 1000000.0;
-    arr[runs][0] = runtime;
+    arr[1][0] = runtime;
     //std::cout<<arr[runs][0]<<"\n";
 
     //get total nodes:
-    arr[runs][1]= a.masterNodeList.size();
+    arr[1][1]= a.masterNodeList.size();
 
     //Get Nodes that were expanded:
     for (int i = 0; i < a.masterNodeList.size(); i++){
         if(a.masterNodeList[i].hasChildren == true)
-            arr[runs][2] += 1;
+            arr[1][2] += 1;
     }
     // std::cout<<"nodes Expanded: "<< arr[runs][2]<<" ";
 
     //deepest branch
-    arr[runs][3] = n.gValue;
+    arr[1][3] = n.gValue;
 
     //Branching Factor
-    arr[runs][4] = (arr[runs][1]/arr[runs][3]);
+    arr[1][4] = (arr[runs][1]/arr[runs][3]);
 
     //Memory Used
-    arr[runs][5] = a.masterNodeList.size()*sizeof(node);
+    arr[1][5] = a.masterNodeList.size()*sizeof(node);
 }
 void controller::runAgain() {
     std::cout<<"runAgain\n";

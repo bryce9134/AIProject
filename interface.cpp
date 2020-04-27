@@ -41,15 +41,23 @@ void interface::printData(double arr[][7]) {
     std::cout<<"\n    ET     NG      NE     d      b*     MO\n";
 
 
-    for (int i = 0; i < 4; i++){
-        if (arr[i][6]==1){
-    std::cout<< std::fixed << std::setprecision(1) <<"\n    "<<arr[i][0];
-    std::cout<<"    "<<arr[i][1]<<"    "<<arr[i][2];
-    std::cout<<"    "<<arr[i][3]<<"    "<<arr[i][4]<<"    "<<arr[i][5]<<"\n";
-        }
+    //for (int i = 0; i < 4; i++){
+        //if (arr[i][6]==1){
+    std::cout<< std::fixed << std::setprecision(1) <<"\n    "<<arr[1][0];
+    std::cout<<"    "<<arr[1][1]<<"    "<<arr[1][2];
+    std::cout<<"    "<<arr[1][3]<<"    "<<arr[1][4]<<"    "<<arr[1][5]<<"\n";
+       // }
 
-    }
+
     std::cout<<"Please note that if the time is less than one tenth of a second, it will not be displayed.\n";
     std::cout<<"This should only be the case when initial choice 1 is taken\n";
 
+}
+
+int interface::chooseH() {
+    int a;
+    std::cout<<"Now, choose the H function you would like to use:\n";
+    std::cout<<"It must be an integer between 1 and 4\n";
+    std::cin>>a;
+    return a;
 }

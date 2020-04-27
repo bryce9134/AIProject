@@ -23,6 +23,7 @@ public:
 
     //Should create the tables and output them to the command line
     void printAll(std::vector<node>);
+    int chooseH();
 };
 
 

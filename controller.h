@@ -20,6 +20,7 @@ private:
                  // aStar.runAlg() to tell it which hueristic to run.
     bool sorted;
     int choice;
+    int choiceH;
     int final;
     double arr[4][7];
 

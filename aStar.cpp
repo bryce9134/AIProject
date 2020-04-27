@@ -1,6 +1,5 @@
 #include "aStar.h"
 #include <utility>
-#include <iostream>
 
 //Number of misplaced tiles from the goal
 int aStar::h1(node node){
@@ -32,8 +31,8 @@ int aStar::h2(node node) {
             }
 
             currentNeighbors = neighbors.at(position);
-            for(int i = 0; i < currentNeighbors.size(); i++){
-                if(currentNeighbors[i] == goal_index)
+            for(int j = 0; j < currentNeighbors.size(); j++){
+                if(currentNeighbors[j] == goal_index)
                     neighbor_is_goal = true;
             }
 
@@ -94,18 +93,17 @@ int aStar::rowsCols(node n, int beg, int end, int inc) {
     return out;
 }
 
+//Brilson heuristic - adding up all previous h values
 int aStar::h4(node node) {
     int temp1 = h1(node);
     int temp2 = h2(node);
     int temp3 = h3(node);
     int hvalue = (temp1+temp2+temp3);
     return hvalue;
-
 }
 
 //generates all the possible nodes that can be created from initial (children)
 void aStar::generateSuccessors(node parent, std::vector<node> &children, int index){
-
     node temp;
     int emptySpace, child = 0;
 
@@ -123,7 +121,6 @@ void aStar::generateSuccessors(node parent, std::vector<node> &children, int ind
             temp.gValue = parent.gValue + 1;
             temp.parent = index;
             temp.parentSpace = emptySpace;
-            // std::cout<<"empty, i: "<< emptySpace<<" "<<currentNeighbors[i]<<"\n";
             std::swap(temp.eightState[emptySpace], temp.eightState[currentNeighbors[i]]);
             children.push_back(temp);
             child++;
@@ -133,7 +130,6 @@ void aStar::generateSuccessors(node parent, std::vector<node> &children, int ind
 
 void aStar::addNode(node n){
     masterNodeList.push_back(n);
-
 }
 
 int aStar::runAlg(node n, int r){

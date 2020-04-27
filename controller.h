@@ -1,13 +1,8 @@
-//
-// Created by AL865 on 4/18/2020.
-//
-
 #ifndef PROJECT_2_STUFF_CONTROLLER_H
 #define PROJECT_2_STUFF_CONTROLLER_H
 
 #include "interface.h"
 #include "aStar.h"
-#include "grapher.h"
 #include "node.h"
 #include <sys/time.h>
 
@@ -15,15 +10,13 @@ class controller {
 private:
     interface ui;
     aStar a;
-    grapher graph;
+    int final;
     int runs;    // holds the amount of times the game has been solved. this is given to
-                 // aStar.runAlg() to tell it which hueristic to run.
+                 // aStar.runAlg() to tell it which heuristic to run.
     bool sorted;
     int choice;
-    int choiceH;
-    int final;
+    int viewNodes;
     double arr[4][7];
-
 
     const std::vector<char> init1 = {'2', '8', '3',
                                      '1', '6', '4',

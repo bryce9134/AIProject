@@ -1,15 +1,8 @@
-#include "node.h"    //same
-#include  <vector>
-#include <queue>
-#include <iostream>
 #include "controller.h"
-int main() {
-    //Creates controller object = c
-	//c.run();
 
+int main() {
     controller c;
     c.start();
-	//small test
 
     return 0;
 }
